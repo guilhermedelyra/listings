@@ -1,4 +1,6 @@
-import { Listing } from "#root/db/models";
+import {
+  Listing
+} from "#root/db/models";
 
 const setupRoutes = app => {
   app.get("/listings", async (req, res, next) => {
@@ -16,7 +18,10 @@ const setupRoutes = app => {
     }
 
     try {
-      const listing = await Listing.create({ description: req.body.description, title: req.body.title });
+      const listing = await Listing.create({
+        description: req.body.description,
+        title: req.body.title
+      });
       return res.json(listing);
     } catch (e) {
       return next(e);

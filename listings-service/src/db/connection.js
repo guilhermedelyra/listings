@@ -1,4 +1,6 @@
-import { Sequelize } from "sequelize";
+import {
+  Sequelize
+} from "sequelize";
 
 import accessEnv from "#root/helpers/accessEnv";
 

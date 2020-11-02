@@ -1,6 +1,11 @@
-import { addHours } from "date-fns";
+import {
+  addHours
+} from "date-fns";
 
-import { User, UserSession } from "#root/db/models";
+import {
+  User,
+  UserSession
+} from "#root/db/models";
 import generateUUID from "#root/helpers/generateUUID";
 import hashPassword from "#root/helpers/hashPassword";
 import passwordCompareSync from "#root/helpers/passwordCompareSync";
@@ -14,7 +19,12 @@ const setupRoutes = app => {
     }
 
     try {
-      const user = await User.findOne({ attributes: {}, where: { email: req.body.email } });
+      const user = await User.findOne({
+        attributes: {},
+        where: {
+          email: req.body.email
+        }
+      });
 
       if (!user) return next(new Error("Invalid email!"));
 
