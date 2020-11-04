@@ -18,7 +18,12 @@ const apolloServer = new ApolloServer({
   context: a => a,
   formatError: formatGraphQLErrors,
   resolvers,
-  typeDefs
+  typeDefs,
+  playground: {
+      settings: {
+          'request.credentials': 'same-origin',
+      }
+  }
 });
 
 const app = express();
