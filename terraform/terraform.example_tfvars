@@ -1,0 +1,3 @@
+aws-access-key               = "get these"
+aws-secret-key               = "from making a user at iam"
+aws-region                   = "sa-east-1"
