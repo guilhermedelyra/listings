@@ -2,7 +2,7 @@ module "test-server" {
   source = "./node-server"
 
   ami-id = "ami-02898a1921d38a50b"
-  key-pair = aws_key_pair.listings-key.key_name
+  key-pair = aws_key_pair.listings-app-key.key_name
   name = "test server"
   # iam-instance-profile = 
   
