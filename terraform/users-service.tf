@@ -6,10 +6,11 @@ module "users-service" {
   source = "./node-server"
 
   ami-id               = "ami-02898a1921d38a50b"
-  key-pair             = aws_key_pair.listings-app-key.key_name
+  iam-instance-profile = module.users-service-codedeploy.iam-instance-profile
+  key-pair             = aws_key_pair.classifieds-full-app-key.key_name
   name                 = "users-service"
   private-ip           = "10.0.1.6"
-  subnet-id            = aws_subnet.listings-app-subnet-private-1.id
+  subnet-id            = aws_subnet.classifieds-full-app-subnet-private-1.id
   vpc-security-group-ids = [
     aws_security_group.allow-internal-http.id,
     aws_security_group.allow-ssh.id,
@@ -28,4 +29,11 @@ module "users-service-db" {
   publicly-accessible    = false
   username               = var.users-service-db-username
   vpc-security-group-ids = [aws_security_group.allow-internal-mysql.id]
+}
+
+module "users-service-codedeploy" {
+  source = "./codedeploy-app"
+
+  app-name          = "users-service"
+  ec2-instance-name = module.users-service.name
 }

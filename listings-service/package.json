@@ -4,17 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "webpack --progress",
     "db:migrate": "sequelize db:migrate",
     "db:migrate:undo": "sequelize db:migrate:undo",
-    "watch": "babel-watch -L src/index.js"
+    "watch": "babel-watch -L src/index.js",
+    "deploy": "node-deploy $(pwd)",
+    "linkall": "yarn link node-deploy"
   },
   "devDependencies": {
+    "node-deploy": "../node-deploy",
     "babel-watch": "^7.0.0"
   },
   "dependencies": {
     "@babel/core": "^7.12.3",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
+    "babel-loader": "^8.2.1",
     "babel-plugin-module-resolver": "^4.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -22,6 +27,9 @@
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^2.5.2"
   }
 }

@@ -1,0 +1,5 @@
+.env.*
+deploy.sh
+dist/
+node_modules/
+.cache/

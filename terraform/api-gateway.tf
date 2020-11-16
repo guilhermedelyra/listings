@@ -6,12 +6,20 @@ module "api-gateway" {
   source = "./node-server"
 
   ami-id               = "ami-02898a1921d38a50b"
-  key-pair             = aws_key_pair.listings-app-key.key_name
+  iam-instance-profile = module.api-gateway-codedeploy.iam-instance-profile
+  key-pair             = aws_key_pair.classifieds-full-app-key.key_name
   name                 = "api-gateway"
-  subnet-id            = aws_subnet.listings-app-subnet-public.id
+  subnet-id            = aws_subnet.classifieds-full-app-subnet-public.id
   vpc-security-group-ids = [
     aws_security_group.allow-http.id,
     aws_security_group.allow-ssh.id,
     aws_security_group.allow-all-outbound.id
   ]
+}
+
+module "api-gateway-codedeploy" {
+  source = "./codedeploy-app"
+
+  app-name          = "api-gateway"
+  ec2-instance-name = module.api-gateway.name
 }
